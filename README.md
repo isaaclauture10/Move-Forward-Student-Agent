@@ -47,3 +47,11 @@ The AI agent:
 Early MVP / Planning Phase
 
 More updates and features coming soon.
+
+## Current Features
+
+- Task storage using Python dictionaries
+- Task prioritization using decision logic
+- High priority task tracking
+- Daily summary generation
+- Sample task dataset using CSV
