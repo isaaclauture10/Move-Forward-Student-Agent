@@ -1,11 +1,16 @@
+import csv
 print("Move Forward Student Agent")
 
-tasks = [
-    {"name": "CIS Assignment", "status": "Not Started"},
-    {"name": "BUSA Quiz", "status": "In Progress"},
-    {"name": "Resume Update", "status": "Missed"}
-]
+tasks = []
+
+with open("tasks.csv", newline="") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        tasks.append(row)
+        
 high_priority_count = 0
+
 
 print("\nTODAY'S TASKS:")
 
