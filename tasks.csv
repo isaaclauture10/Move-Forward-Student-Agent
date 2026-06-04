@@ -1,4 +1,4 @@
-name,status
-CIS Assignment,Not Started
-BUSA Quiz,In Progress
-Resume Update,Missed
+name,status,due_date
+CIS Assignment,Not Started,2026-06-05
+BUSA Quiz,In Progress,2026-06-07
+Resume Update,Missed,2026-06-03
