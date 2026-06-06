@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 print("Move Forward Student Agent")
 
 tasks = []
@@ -18,16 +19,36 @@ print("\nTODAY'S TASKS:")
 for task in tasks:
 
     score = 0
+    due_date = datetime.strptime(task["due_date"], "%Y-%m-%d")
+    today = datetime.today()
+
     total_hours += int(task["estimated_hours"])
 
+    overdue = False
+
+
+if due_date < today:
+    overdue = True
+   
     if task["status"] == "Not Started":
         priority = "HIGH PRIORITY"
         score += 10
+
+        if overdue:
+         score += 50
+        
         high_priority_count += 1
+        
+
 
     elif task["status"] == "In Progress":
         priority = "MEDIUM PRIORITY"
         score += 5
+
+        if overdue:
+         score += 50
+
+
 
     else:
         priority = "RECOVERY PLAN"
@@ -76,4 +97,3 @@ elif total_hours >= 4:
     print("Moderate workload.")
 else:
     print("Light workload.")
-    
