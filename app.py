@@ -11,8 +11,6 @@ page = st.sidebar.radio(
 
 tasks = []
 
-tasks = []
-
 with open("tasks.csv", newline="") as file:
     reader = csv.DictReader(file)
 
@@ -23,36 +21,6 @@ total_hours = 0
 
 for task in tasks:
     total_hours += int(task["estimated_hours"])
-
-if page == "Dashboard":
-
- st.title("Most Valuable Agent")
-
-
- st.subheader("AI Productivity Assistant")
-
- st.write(
-    "MVSA analyzes deadlines, importance, workload, and task status "
-    "to recommend what you should focus on next."
-)
-
-st.metric("Tasks Loaded", len(tasks))
-st.metric("Estimated Hours", total_hours)
-
-st.subheader("Task List")
-
-st.table(tasks)
-
-st.subheader("Task Hours Chart")
-
-chart_data = {}
-
-for task in tasks:
-    chart_data[task["name"]] = int(task["estimated_hours"])
-
-st.bar_chart(chart_data)
-
-from datetime import datetime
 
 ranked_tasks = []
 
@@ -96,51 +64,93 @@ for task in tasks:
 
 ranked_tasks.sort(key=lambda x: x["score"], reverse=True)
 
-st.subheader("Ranked Tasks")
-st.table(ranked_tasks)
+if page == "Dashboard":
 
-st.subheader("Top 3 Focus Plan")
-st.table(ranked_tasks[:3])
+    st.title("Most Valuable Agent")
 
-top_task = ranked_tasks[0]
+    st.subheader("AI Productivity Assistant")
 
-st.subheader("Today's Focus")
+    st.write(
+        "MVSA analyzes deadlines, importance, workload, and task status "
+        "to recommend what you should focus on next."
+    )
 
-st.success(
-    f"Focus on {top_task['name']} first. "
-    f"It currently has the highest priority score ({top_task['score']})."
-)
+    st.metric("Tasks Loaded", len(tasks))
+    st.metric("Estimated Hours", total_hours)
 
+    st.subheader("Task Hours Chart")
 
+    chart_data = {}
 
-st.subheader("Workload Forecast")
+    for task in tasks:
+        chart_data[task["name"]] = int(task["estimated_hours"])
 
-if total_hours >= 8:
-    st.warning("Heavy week ahead.")
-elif total_hours >= 4:
-    st.info("Moderate workload.")
-else:
-    st.success("Light workload.")
+    st.bar_chart(chart_data)
 
-    
-st.subheader("About MVSA")
+    st.subheader("Ranked Tasks")
+    st.table(ranked_tasks)
 
-st.write(
-    "MVSA is a productivity assistant that analyzes tasks, deadlines, "
-    "importance, workload, and status to recommend what to focus on first."
- )
-     
-     
-st.subheader("Current Features")
+    st.subheader("Top 3 Focus Plan")
+    st.table(ranked_tasks[:3])
 
-st.write("- Reads tasks from CSV")
-st.write("- Scores tasks by urgency and importance")
-st.write("- Ranks tasks automatically")
-st.write("- Generates a Top 3 Focus Plan")
-st.write("- Forecasts workload")    
+    top_task = ranked_tasks[0]
 
+    st.subheader("Today's Focus")
 
+    st.success(
+        f"Focus on {top_task['name']} first. "
+        f"It currently has the highest priority score ({top_task['score']})."
+    )
 
+    st.subheader("Workload Forecast")
 
+    if total_hours >= 8:
+        st.warning("Heavy week ahead.")
+    elif total_hours >= 4:
+        st.info("Moderate workload.")
+    else:
+        st.success("Light workload.")
 
+elif page == "Tasks":
 
+    st.title("Tasks")
+
+    st.subheader("Task List")
+    st.table(tasks)
+
+    st.subheader("Add New Task")
+
+    task_name = st.text_input("Task Name")
+
+    hours = st.number_input(
+        "Estimated Hours",
+        min_value=1,
+        max_value=40,
+        value=1
+    )
+
+    importance = st.slider(
+        "Importance",
+        min_value=1,
+        max_value=10,
+        value=5
+    )
+
+elif page == "About":
+
+    st.title("About MVSA")
+
+    st.write(
+        "MVSA is a productivity assistant that analyzes tasks, deadlines, "
+        "importance, workload, and status to recommend what to focus on first."
+    )
+
+    st.subheader("Current Features")
+
+    st.write("- Reads tasks from CSV")
+    st.write("- Scores tasks by urgency and importance")
+    st.write("- Ranks tasks automatically")
+    st.write("- Generates a Top 3 Focus Plan")
+    st.write("- Forecasts workload")
+
+        
