@@ -113,7 +113,27 @@ elif total_hours >= 4:
     st.info("Moderate workload.")
 else:
     st.success("Light workload.")
+
     
+st.subheader("About MVSA")
+
+st.write(
+    "MVSA is a productivity assistant that analyzes tasks, deadlines, "
+    "importance, workload, and status to recommend what to focus on first."
+ )
+     
+     
+st.subheader("Current Features")
+
+st.write("- Reads tasks from CSV")
+st.write("- Scores tasks by urgency and importance")
+st.write("- Ranks tasks automatically")
+st.write("- Generates a Top 3 Focus Plan")
+st.write("- Forecasts workload")    
+
+
+
+
 
 st.sidebar.title("Navigation")
 st.sidebar.write("Dashboard")
