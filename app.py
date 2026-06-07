@@ -2,6 +2,13 @@ import streamlit as st
 import csv
 from datetime import datetime
 
+st.sidebar.title("Navigation")
+
+page = st.sidebar.radio(
+    "Go to",
+    ["Dashboard", "Tasks", "About"]
+)
+
 tasks = []
 
 tasks = []
@@ -17,13 +24,14 @@ total_hours = 0
 for task in tasks:
     total_hours += int(task["estimated_hours"])
 
+if page == "Dashboard":
 
-st.title("Most Valuable Agent")
+ st.title("Most Valuable Agent")
 
 
-st.subheader("AI Productivity Assistant")
+ st.subheader("AI Productivity Assistant")
 
-st.write(
+ st.write(
     "MVSA analyzes deadlines, importance, workload, and task status "
     "to recommend what you should focus on next."
 )
@@ -133,12 +141,6 @@ st.write("- Forecasts workload")
 
 
 
-
-
-st.sidebar.title("Navigation")
-st.sidebar.write("Dashboard")
-st.sidebar.write("Tasks")
-st.sidebar.write("Settings")
 
 
 

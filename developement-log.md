@@ -11,7 +11,7 @@
 - Created main.py
 - Successfully executed first program 
 
-## Day 3-7
+## Day 3-5
 - Added task ranking engine
 - Added importance scoring
 - Added workload forecasting
@@ -19,7 +19,7 @@
 - Created first web app interface
 - Successfully launched Move Forward in browser
 
-## Day 7
+## Day 6-7
 
 - Connected Streamlit frontend to tasks.csv
 - Added live task metrics
@@ -30,3 +30,11 @@
 - Added Today's Focus recommendation card
 - Added workload forecast system
 - Rebranded project from Move Forward to MVSA (Most Valuable Student Agent)
+
+## Day 7
+-Built working MVSA dashboard
+-Added charts
+-Added task rankings
+-Added focus recommendations
+-Added workload forecasting
+
