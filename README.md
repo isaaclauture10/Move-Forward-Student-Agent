@@ -1,56 +1,114 @@
-# Move-Forward-Student-Agent
-## Overview
-Move Forward is an AI-powered student productivity assistant designed to help students stay organized, prioritize deadlines, and manage daily tasks more efficiently.
+# Most Valuable Student Agent (MVSA)
 
-The system focuses on reducing overwhelm by helping students understand what to work on first, when tasks are due, and how to structure their day.
+## Overview
+
+Most Valuable Student Agent (MVSA) is a productivity assistant built with Python and Streamlit.
+
+The application analyzes tasks based on deadlines, importance, workload, and completion status to help users decide what to focus on next.
+
+MVSA automatically ranks tasks, generates focus recommendations, forecasts workload, and allows users to manage tasks through a simple web interface.
 
 ---
 
 ## Features
-- Smart task prioritization
-- Daily planning assistance
-- Deadline tracking
-- Time-block suggestions
-- Recovery planning for missed tasks
-- Simple workflow organization
 
----
+### Task Management
 
-## Example Use Case
-A student uploads or enters their assignments and available time for the day.
+* Add new tasks
+* Delete existing tasks
+* Store tasks in a CSV database
+* Track task status and deadlines
 
-The AI agent:
-1. Identifies the most urgent tasks
-2. Ranks priorities
-3. Builds a simple daily plan
-4. Suggests recovery steps for overdue work
+### Priority Engine
+
+* Scores tasks based on urgency
+* Scores tasks based on importance
+* Detects overdue tasks
+* Generates ranked task recommendations
+
+### Productivity Dashboard
+
+* Task count metrics
+* Estimated workload hours
+* Task ranking table
+* Top 3 Focus Plan
+* Daily focus recommendation
+* Workload forecasting
+
+### Navigation
+
+* Dashboard page
+* Tasks page
+* About page
 
 ---
 
 ## Tech Stack
-- GitHub
-- Markdown
-- CSV task datasets
-- Future AI integrations planned
+
+* Python
+* Streamlit
+* CSV Data Storage
 
 ---
 
-## Project Goals
-- Build a real-world AI workflow assistant
-- Improve student productivity
-- Explore AI-powered organization systems
-- Continue expanding features over time
+## How It Works
+
+MVSA evaluates each task using:
+
+* Due date
+* Importance score
+* Task status
+* Estimated workload
+
+The system generates a priority score and ranks tasks automatically.
+
+Overdue tasks receive additional weighting to encourage recovery planning.
 
 ---
 
-## Current Status
-Early MVP / Planning Phase
+## Current MVP Status
 
-More updates and features coming soon.
+### Completed
 
-## Current Features
+* Multi-page Streamlit interface
+* Task ranking engine
+* CSV task storage
+* Add task functionality
+* Delete task functionality
+* Input validation
+* Workload forecasting
+* Focus recommendations
 
-- Task storage using Python dictionaries
+### Planned Features
+
+* Task editing
+* Completion tracking
+* User authentication
+* Database integration
+* AI-powered recommendations
+* Calendar integration
+* Mobile-friendly interface
+
+---
+
+## Example Use Case
+
+A student enters:
+
+* CIS Assignment
+* BUSA Quiz
+* Resume Update
+
+MVSA analyzes urgency and importance, then recommends which task should be completed first while generating a Top 3 Focus Plan.
+
+---
+
+## Author
+
+Isaac Lauture
+
+Move Forward.
+dictionaries
 - Task prioritization using decision logic
 - High priority task tracking
 - Daily summary generation
