@@ -93,14 +93,15 @@ if page == "Dashboard":
     st.subheader("Top 3 Focus Plan")
     st.table(ranked_tasks[:3])
 
-    top_task = ranked_tasks[0]
+    if len(ranked_tasks) > 0:
+        top_task = ranked_tasks[0]
 
-    st.subheader("Today's Focus")
+        st.subheader("Today's Focus")
 
-    st.success(
-        f"Focus on {top_task['name']} first. "
-        f"It currently has the highest priority score ({top_task['score']})."
-    )
+        st.success(
+            f"Focus on {top_task['name']} first. "
+            f"It currently has the highest priority score ({top_task['score']})."
+        )
 
     st.subheader("Workload Forecast")
 
@@ -117,6 +118,33 @@ elif page == "Tasks":
 
     st.subheader("Task List")
     st.table(tasks)
+
+    st.subheader("Delete Task")
+
+    task_to_delete = st.selectbox(
+        "Select a task to delete",
+        [task["name"] for task in tasks]
+    )
+    if st.button("Delete Task"):
+       updated_tasks = []
+
+       for task in tasks:
+        if task["name"] != task_to_delete:
+            updated_tasks.append(task)
+
+       with open("tasks.csv", "w", newline="") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=["name", "status", "due_date", "estimated_hours", "importance"]
+        )
+
+        writer.writeheader()
+        writer.writerows(updated_tasks)
+
+        st.success("Task deleted! Refresh the page to see it.")
+
+
+
 
     st.subheader("Add New Task")
 
@@ -136,22 +164,30 @@ elif page == "Tasks":
         value=5
     )
 
+    due_date = st.date_input("Due Date")
+
     if st.button("Add Task"):
-     with open("tasks.csv", "a", newline="") as file:
-        writer = csv.DictWriter(
-            file,
-            fieldnames=["name", "status", "due_date", "estimated_hours", "importance"]
-        )
 
-        writer.writerow({
-            "name": task_name,
-            "status": "Not Started",
-            "due_date": datetime.today().strftime("%Y-%m-%d"),
-            "estimated_hours": hours,
-            "importance": importance
-        })
+        if task_name.strip() == "":
+            st.error("Please enter a task name.")
 
-    st.success("Task added! Refresh the page to see it.")
+        else:
+            with open("tasks.csv", "a", newline="") as file:
+                writer = csv.DictWriter(
+                    file,
+                    fieldnames=["name", "status", "due_date", "estimated_hours", "importance"]
+                )
+
+                writer.writerow({
+                    "name": task_name,
+                    "status": "Not Started",
+                    "due_date": due_date.strftime("%Y-%m-%d"),
+                    "estimated_hours": hours,
+                    "importance": importance
+                })
+
+            st.success("Task added! Refresh the page to see it.")
+
 elif page == "About":
 
     st.title("About MVSA")
@@ -168,5 +204,4 @@ elif page == "About":
     st.write("- Ranks tasks automatically")
     st.write("- Generates a Top 3 Focus Plan")
     st.write("- Forecasts workload")
-
-        
+    st.write("- Adds new tasks from the app")
