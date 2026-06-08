@@ -136,6 +136,22 @@ elif page == "Tasks":
         value=5
     )
 
+    if st.button("Add Task"):
+     with open("tasks.csv", "a", newline="") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=["name", "status", "due_date", "estimated_hours", "importance"]
+        )
+
+        writer.writerow({
+            "name": task_name,
+            "status": "Not Started",
+            "due_date": datetime.today().strftime("%Y-%m-%d"),
+            "estimated_hours": hours,
+            "importance": importance
+        })
+
+    st.success("Task added! Refresh the page to see it.")
 elif page == "About":
 
     st.title("About MVSA")
